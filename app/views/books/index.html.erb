@@ -1,0 +1,26 @@
+
+
+<!--一覧ページ-->
+<div class="container pt-3 pb-5">
+   <!--エラーメッセージ-->
+      <%= render "books_error" %>
+  <div class="row">
+    <div class="col-md-3 pr-1">
+      <!--ユーザー情報-->
+      <%= render "users/userinfo",user:@user %>
+
+       <!--投稿-->
+      <%= render "books/form",book:@book %>
+    </div>
+
+    <!--投稿一覧-->
+    <div class="col-md-8 offset-md-1">
+      
+            
+      <%= render 'books_index', books: @books %>
+      
+   
+     </div>
+        </div>
+           </div>
+      

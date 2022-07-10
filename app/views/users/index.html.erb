@@ -1,0 +1,19 @@
+
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+       <!--エラーメッセージ-->
+    <%= render "user_error" %>
+      <!--ユーザー情報-->
+      <%= render 'userinfo', user: current_user %>
+      <!--新規投稿-->
+      <%= render 'books/form', book: @book %>
+    </div>
+ <!--ユーザー一覧-->
+    <div class="col-md-8 offset-md-1">
+
+      <%= render 'users_index', users: @users %>
+    </div>
+  </div>
+</div>

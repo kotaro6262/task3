@@ -1,0 +1,29 @@
+
+
+
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>User info</h2>
+    <!--エラーメッセージ-->
+      <%= render "user_error" %>
+     <%= form_with model: @user, local: true do |f| %>
+      <div class="form-group">
+        <label for="user_name">Name</label><br/>
+        <%= f.text_field :name %>
+      </div>
+      <div class="form-group">
+        <label for="user_image">Image</label>
+        <%= f.file_field :profile_image, accept: "image/*" %><br/>
+      </div>
+      <div class="form-group">
+        <label for="user_introduction">Introduction</label>
+        <%= f.text_field :introduction %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Update User", class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
