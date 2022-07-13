@@ -12,21 +12,23 @@ class BooksController < ApplicationController
   
   def index
     @books=Book.all
+   
     @book = Book.new
     @user = current_user
   end
 
    def show
     @book = Book.find(params[:id])
+       @user = @book.user
     @book_new = Book.new
+     @book_comment = BookComment.new
+     
    
    end
 
   def edit
     @book = Book.find(params[:id])
   end
-  
-  
    def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
@@ -45,6 +47,7 @@ class BooksController < ApplicationController
 
 
   def create
+    # １.&2. データを受け取り新規登録するためのインスタンス作成
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
@@ -52,6 +55,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book)
     else
       @books = Book.all
+      # ログイン中のユーザーをインスタンスに渡す
       @user = current_user
       render :index
     end

@@ -1,10 +1,16 @@
 class ApplicationController < ActionController::Base
     before_action :authenticate_user!, except: [:top, :about]
+ #全てのアクションの前に、ユーザーがログインしているかどうか確認する！ただし、topアクションと、aboutアクションが呼び出された場合は、除くよ。という意味-->
+  
+  
     before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def after_sign_in_path_for(resource)
+ 
+ 
+ 
+ def after_sign_in_path_for(resource)
     user_path(current_user.id)
-  end
+ end
 
   def after_sign_out_path_for(resource)
     root_path
@@ -13,6 +19,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:name])
   end
 end
