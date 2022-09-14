@@ -16,7 +16,7 @@
               <td>
                 <!--ユーザー詳細へ-->
                 <%= link_to user_path(book.user.id) do %>
-                <%= image_tag book.user.get_profile_image(80,80) %>
+                <%= image_tag book.user.get_profile_image, size:'50x50' %>
                 <% end %>
               </td>
 
@@ -28,11 +28,11 @@
               </td>
 
               <td>
-                
+
                 <%= book.body %>
               </td>
-              
-              
+
+
                <td>
                   <% if book.favorited_by?(current_user) %>
                     <%= link_to book_favorites_path(book), method: :delete do %>

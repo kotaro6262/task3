@@ -25,13 +25,13 @@
           <tr>
             <td>
               <%= link_to user_path(@book.user) do %>
-                <%= image_tag @book.user.get_profile_image(80,80) %><br/>
+                <%= image_tag @book.user.get_profile_image, size:"100x100"  %><br/>
                 <%= @book.user.name %>
               <% end %>
             </td>
             <td><%= link_to @book.title, book_path(@book) %></td>
             <td><%= @book.body %></td>
-            
+
             <!--いいね機能-->
             <td>
                   <%= link_to user_path(@book.user_id) do %>
@@ -50,24 +50,24 @@
                     <% end %>
                   <% end %>
               </td>
-              
+
               <td>コメント数: <%= @book.book_comments.count %></td>
-              
-              
-              
+
+
+
             <% if current_user == @book.user %>
               <td><%= link_to "Edit", edit_book_path(@book), class: 'btn btn-success' %></td>
               <td><%= link_to "Destroy", book_path(@book), method: :delete, class: 'btn btn-danger', data: { confirm: "削除してもよろしいですか？" } %></td>
             <% end %>
              </tbody>
           </table>
-          
+
            <% @book.book_comments.each do |book_comment| %>
               <table>
                 <td>
                   <%= link_to user_path(book_comment.user_id) do %>
                     <% if book_comment.user.profile_image.attached? %>
-                      <%= image_tag book_comment.user.get_profile_image(100, 100) %>
+                      <%= image_tag book_comment.user.get_profile_image, size:"100x100"  %>
                     <% else %>
                       <%= image_tag 'no_image.jpg', size: "100x100" %>
                     <% end %>
@@ -95,4 +95,3 @@
         </div>
         </div>
     </div>
-       
