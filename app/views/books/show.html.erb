@@ -85,6 +85,7 @@
               <table>
             <% end %>
             <%= form_with model: [@book, @book_comment] do |f| %>
+            <!--modelは親のモデル、子のモデル(ルーティングのネストの順番)の順番！投稿先URLのbook_idに親のモデル（@book）のidが入るのかな？-->
               <div class="form-group">
                 <%= f.text_area :comment, rows: '5', class: 'form-control'  %>
               </div>

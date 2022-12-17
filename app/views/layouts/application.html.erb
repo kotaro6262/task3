@@ -7,6 +7,8 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!--この記述によってcssファイルはapp/javascript/stylesheetの中を見るようになる packのとこがlinkならassetsのcssを読みこむ-->
+    <!--カリキュラムの24章のbootstrapのところ参照-->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -21,7 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
            <% if user_signed_in? %>
-          
+
             <li>
               <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
                 <i class="fas fa-home"></i>Home
@@ -43,7 +45,7 @@
               <% end %>
             </li>
           <% else %>
-   
+
             <li>
               <%= link_to root_path, class: 'nav-link text-light' do %>
                 <i class="fas fa-home"></i>Home
@@ -70,11 +72,10 @@
     </div>
   </nav>
 </header>
-     <div>
-    
-    </div>
+<main>
+<%= flash[:notice] %>
     <%= yield %>
-    
+    </main>
     <footer>
     <div class="container mt-5">
   	<div class="row">
@@ -85,6 +86,6 @@
     </div>
     </footer>
   </body>
-  
-  
+
+
 </html>

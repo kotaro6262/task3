@@ -8,7 +8,6 @@
         <th colspan="3"></th>
       </tr>
     </thead>
-    <tbody>
 
 <% books.each do |book| %>
           <tbody>
@@ -16,7 +15,10 @@
               <td>
                 <!--ユーザー詳細へ-->
                 <%= link_to user_path(book.user.id) do %>
-                <%= image_tag book.user.get_profile_image, size:'50x50' %>
+                <%= image_tag book.user.get_profile_image, size:'80x80' %>
+                
+               <!--bookに紐づいたuserのレコードをuserモデルが取り出しuserモデルのインスタンス(取り出した1行レコード)として取得する。-->
+               <!--userモデルのインスタンスについてインスタンスメソッド？であるget_profile_imageを呼び出し？-->
                 <% end %>
               </td>
 

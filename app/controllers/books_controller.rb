@@ -31,13 +31,15 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
    def update
-    
+
     @book = Book.find(params[:id])
     if @book.update(book_params)
+      # update後にidが割り振られる！
         redirect_to book_path(@book.id)
         flash[:notice]="You have updated book successfully."
     else
-      @book = Book.find(params[:id])
+    # バリデーションを起こしたとき(タイトルやボディを空欄)はupdate時に、@bookの中身は更新されるけど, データベースに保存はされない(バリデーションで引っかかってるから)
+      # だから、ここで@book = Book.find(params[:id])の記述すると, 更新前のデータに上書きされるからうまくいかない
       render :edit
     end
    end
@@ -53,8 +55,10 @@ class BooksController < ApplicationController
     #book_paramsが呼び出され(下のbook_paramsメソッド)で厳選された値がindexやshowから送られてきたからそれを@bookという変数(bookという名前の箱)に代入
     @book = Book.new(book_params)
     #投稿フォームにはログイン中のユーザーidが入力されないから、bookのuser_idカラムにログイン中のユーザーidを代入
+    #これがないとバリデーションのときのエラー文がviewにあるときはUser must exist エラー文がないときは、何も起きずにelseの処理
     @book.user_id = current_user.id
     if @book.save
+      # create成功後にidが割り振られる！バリデーションの時は@bookの中身は変わるけどテーブルに保存されないから、idは振られない
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(@book)
     else
