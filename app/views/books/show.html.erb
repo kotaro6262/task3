@@ -53,8 +53,8 @@
 
               <td>コメント数: <%= @book.book_comments.count %></td>
 
-
-
+</
+            
             <% if current_user == @book.user %>
               <td><%= link_to "Edit", edit_book_path(@book), class: 'btn btn-success' %></td>
               <td><%= link_to "Destroy", book_path(@book), method: :delete, class: 'btn btn-danger', data: { confirm: "削除してもよろしいですか？" } %></td>
